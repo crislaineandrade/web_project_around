@@ -11,3 +11,19 @@
   box-sizing: border-box;
   margin: 0 auto;
 }
+
+/* @media screen and (max-width:800px){
+  .page-section {
+    max-width: 735px;
+  }
+
+
+} */
+
+@media screen and (max-width:320px){
+  .page-section {
+    max-width: 282px;
+  }
+
+
+}
