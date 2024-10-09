@@ -19,13 +19,11 @@
   max-width: 880px;
 }
 
-/* TELA 800 PX */
-
 
 
 /* TELA 320PX */
 
-@media screen and (max-width320px){
+@media screen and (max-width:320px){
   .header {
     max-width: 320px;
 

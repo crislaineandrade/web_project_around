@@ -3,6 +3,22 @@
   background-color: #000000;
   margin: 0 auto;
   box-sizing: border-box;
+
+}
+
+@media screen and (max-width:800px){
+  .page {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width:320px){
+  .page {
+    padding: 0 19px;
+
+  }
+
+
 }
 
 .page-section {
@@ -12,18 +28,3 @@
   margin: 0 auto;
 }
 
-/* @media screen and (max-width:800px){
-  .page-section {
-    max-width: 735px;
-  }
-
-
-} */
-
-@media screen and (max-width:320px){
-  .page-section {
-    max-width: 282px;
-  }
-
-
-}

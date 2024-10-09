@@ -9,3 +9,9 @@
   src: url('./fonts/Inter/static/Inter_18pt-Medium.ttf') format('woff2');
   font-weight: 500;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./fonts/Inter/static/Inter_18pt-ExtraBold.ttf') format('woff2');
+  font-weight: 900;
+}
