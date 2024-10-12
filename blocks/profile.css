@@ -40,16 +40,22 @@
 
 }
 
-.profile__image-edit-button {
+.profile__edit-button {
   grid-area: button;
   background-color: black;
   border: none;
 
+
 }
 
-.profile__image-button {
+
+.profile__image-edit-button {
   object-fit: contain;
   max-width: 24px;
+}
+
+.profile__image-edit-button:hover {
+  opacity: 0.6;
 }
 
 .profile__paragraph {
@@ -73,8 +79,11 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  cursor: pointer;
+}
 
-
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width:1024px){
@@ -124,22 +133,28 @@
   }
 
   .profile__info { /*div informacoes */
-    grid-template-areas:
-    'title button'
-    'description';
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr;
     grid-gap: 10px 14px;
     margin: auto;
+    margin-right: 0;
   }
 
   .profile__user {
     font-size: 1.375rem;
     line-height: 1.664375rem;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 35px;
     max-width: 196px;
     margin: 30px auto 0;
 
+  }
+
+  .profile__edit-button {
+
+    justify-self: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 8px;
   }
 
   .profile__image-button {

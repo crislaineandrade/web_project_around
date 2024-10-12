@@ -52,10 +52,25 @@
 .elements__button-card {
   border: none;
   background-color: #fff;
+  cursor: pointer;
 
+}
+
+
+
+.elements__button-image-card:hover {
 
 
 }
+
+.elements__button-image-card:active {
+
+
+}
+
+/* precisa do active na cor preta
+o hover tera uma opacidade
+isso tudo é na imagem ou no botao? */
 
 /* TELA 800 PX */
 

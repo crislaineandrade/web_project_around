@@ -21,9 +21,9 @@
         <div class="profile__info">
           <h1 class="profile__user">Jacques Cousteau</h1>
 
-          <button type="button" class="profile__image-edit-button">
-            <img class="profile__image-button" src="./images/edit_button.png" alt="edit button">
-          </button>
+          <button type="button" class="profile__edit-button">
+            <img class="profile__image-edit-button" src="./images/edit_button.png" alt="edit button" >
+          </button >
 
           <p class="profile__paragraph">Explorador</p>
         </div>
@@ -45,7 +45,7 @@
               <p class="elements__name-card">Vale de Yosemite</p>
 
               <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
+                <img class="elements__button-image-card" src="./images/button_heart.png" alt="image of a heart">
               </button>
             </div>
           </li>
@@ -100,7 +100,7 @@
 
             <div class="elements__card-content">
 
-              <p class="elements__name-card">Parque Nacional...</p>
+              <p class="elements__name-card">Parque Nacional</p>
 
               <button type="button" class="elements__button-card">
                 <img src="./images/button_heart.png" alt="image of a heart">
@@ -125,6 +125,32 @@
         </ul>
       </section>
 
+      <section class="popup">
+
+        <button type="button" class="popup__close-button">
+        
+        </button>
+
+        <h2 class="popup__title">Editar perfil</h2>
+
+        <form class="popup__form">
+          <fieldset class="popup__fieldset">
+
+            <input type="text" class="popup__name" id="name" placeholder="Nome">
+
+            <input type="text" class="popup__ocupation" id="ocupation" placeholder="Sobre mim">
+
+            <button type="submit" class="popup__save-button">Salvar</button>
+          </fieldset>
+
+        </form>
+
+      </section>
+
+
+
+
+
     </main>
 
     <footer class="footer">
@@ -133,5 +159,9 @@
 
   </div>
 
+  <script src="script.js"></script>
+
+
+
 </body>
-</html>l
+</html>
