@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Around the U.S</title>
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo_header.png" alt="logo">
+      <div class="header__line"></div>
+    </header>
+
+    <main class="content">
+      <section class="profile page-section">
+
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="image of a man">
+
+        <div class="profile__info">
+          <h1 class="profile__user">Jacques Cousteau</h1>
+
+          <button type="button" class="profile__edit-button">
+            <img class="profile__image-edit-button" src="./images/edit_button.png" alt="edit button" >
+          </button >
+
+          <p class="profile__paragraph">Explorador</p>
+        </div>
+
+        <button type="button" class="profile__add-button">
+          <img class="profile__image-add-button" src="./images/add__button.png" alt="add button">
+        </button>
+      </section>
+
+      <section class="elements">
+
+        <ul class="elements__cards">
+
+          <li class="elements__card">
+            <img class="elements__image" src="./images/vale_de_yosemite.jpg" alt="image of vale de yosemite"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Vale de Yosemite</p>
+
+              <button type="button" class="elements__button-card">
+                <img class="elements__button-image-card" src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__card">
+            <img class="elements__image" src="./images/lago_louise.png" alt="image of lago louise"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Lago Louise</p>
+
+              <button type="button" class="elements__button-card">
+                <img src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+
+
+          </li>
+
+          <li class="elements__card">
+
+            <img class="elements__image" src="./images/montanhas.png" alt="image of montanhas"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Montanhas Care...</p>
+
+              <button type="button" class="elements__button-card">
+                <img src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+
+          </li>
+
+          <li class="elements__card">
+            <img class="elements__image" src="./images/latemar.png" alt="image of latemar"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Latemar</p>
+
+              <button type="button" class="elements__button-card">
+                <img src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+
+          </li>
+
+          <li class="elements__card">
+
+            <img class="elements__image" src="./images/parque_nacional.png" alt="image of parque nacional"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Parque Nacional</p>
+
+              <button type="button" class="elements__button-card">
+                <img src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+          </li>
+
+          <li class="elements__card">
+
+            <img class="elements__image" src="./images/lago_di_braies.png" alt="image of lago di braies"/>
+
+            <div class="elements__card-content">
+
+              <p class="elements__name-card">Lago di Braies</p>
+
+              <button type="button" class="elements__button-card">
+                <img src="./images/button_heart.png" alt="image of a heart">
+              </button>
+            </div>
+
+          </li>
+        </ul>
+      </section>
+
+      <section class="popup">
+
+        <button type="button" class="popup__close-button">
+
+        </button>
+
+        <h2 class="popup__title">Editar perfil</h2>
+
+        <form class="popup__form">
+          <fieldset class="popup__fieldset">
+
+            <input type="text" class="popup__name" id="name" placeholder="Nome">
+
+            <input type="text" class="popup__ocupation" id="ocupation" placeholder="Sobre mim">
+
+            <button type="submit" class="popup__save-button">Salvar</button>
+          </fieldset>
+
+        </form>
+
+      </section>
+
+
+
+
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__paragraph">© 2024 Around The U.S.</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+
+
+
+</body>
+</html>
