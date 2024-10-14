@@ -21,10 +21,10 @@
   grid-template-areas:
   'title button'
   'description description';
-  grid-template-columns: 373px auto;
   grid-gap: 7px 17px;
   margin-right: auto;
   align-items: center;
+  max-width: 373px;
 
 
 }
@@ -37,6 +37,9 @@
   font-size: 2.625rem;
   line-height: 3rem;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
 }
 
@@ -44,6 +47,7 @@
   grid-area: button;
   background-color: black;
   border: none;
+  cursor: pointer;
 
 
 }
@@ -66,6 +70,10 @@
   font-size: 1.125rem;
   line-height: 1.36125rem;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px;
 
 }
 
@@ -135,26 +143,26 @@
   .profile__info { /*div informacoes */
     grid-template-columns: 1fr;
     grid-gap: 10px 14px;
-    margin: auto;
     margin-right: 0;
+
+
   }
 
   .profile__user {
     font-size: 1.375rem;
     line-height: 1.664375rem;
     text-align: center;
-    margin-top: 35px;
     max-width: 196px;
     margin: 30px auto 0;
 
   }
 
   .profile__edit-button {
-
     justify-self: center;
     align-items: center;
     margin-top: 20px;
     padding: 8px;
+
   }
 
   .profile__image-button {
