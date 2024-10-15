@@ -35,15 +35,15 @@
   display: flex;
   justify-content: space-between;
   padding: 25px 21px 31px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
   border-radius: 0 0 10px 10px;
   align-items: center;
 }
 
 .elements__name-card {
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-family: 'Inter';
   font-weight: 900;
   font-size: 1.5rem;
