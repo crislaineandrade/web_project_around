@@ -30,6 +30,12 @@ const closeEditButton = document.querySelector('.popup-edit__close-button')
 //onde var ser adcionado (ul)
 const containerUl = document.querySelector('.elements__cards');
 
+//botao de criar nova imagem
+const createImageButton = document.querySelector('.popup-edit__create-button');
+
+//formulario de criar imagem
+const formCreateImage = document.querySelector('.popup-edit__form')
+
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -121,7 +127,25 @@ for (const card of initialCards) {
   containerUl.prepend(newCard);
 
 }
+//---------CRIAR CARTOES INPUT USUARIO--------
+ function createUserCards (evt) {
+  evt.preventDefault();
+  //pegar o titulo do cartao
+  const inputTitleUser = document.querySelector('#edit-name').value;
+
+  //pegar link do cartao
+  const inputLinkUser = document.querySelector('#link').value;
+
+  //adcionar na array initialCards
+  const newCardObject = {name: inputTitleUser, link: inputLinkUser};
+
+  const newCard = createCards(newCardObject);
+  containerUl.prepend(newCard);
+
+  closeForm(formAddImage);
+
+ }
+
+ formCreateImage.addEventListener('submit', createUserCards);
 
 
-//OBJETIVO: IRA COLOCAR UM NOME NO INPUT DE TITLE E UM LINK NO INPUT DE LINK E ADICIONAR ESSA IMAGEM NA UL.
-  //ELE VAI PEGAR O NOME E LINK DO OBJETO DENTRO DO ARRAY
