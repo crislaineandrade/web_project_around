@@ -1,3 +1,5 @@
+// ------------VARIAVEIS---------
+
 //botao de editar
 const openButton = document.querySelector('.profile__image-edit-button');
 //botao x de fechar
@@ -24,6 +26,9 @@ const formAddImage = document.querySelector('.popup-edit')
 const addImageButton = document.querySelector('.profile__add-button')
 //botao de fechar popup adcionar imagem
 const closeEditButton = document.querySelector('.popup-edit__close-button')
+
+//onde var ser adcionado (ul)
+const containerUl = document.querySelector('.elements__cards');
 
 const initialCards = [
   {
@@ -52,6 +57,8 @@ const initialCards = [
   }
 ];
 
+// ------------ABRIR FORMULARIO---------
+
 function openForm(formReceived) {
   formReceived.classList.add('popup_opened')
 }
@@ -62,7 +69,7 @@ addImageButton.addEventListener('click',function() {
   openForm(formAddImage);
 });
 
-
+// ------------FECHAR FORMULARIO---------
 function closeForm(formReceived) {
   formReceived.classList.remove('popup_opened');
 }
@@ -76,14 +83,45 @@ closeEditButton.addEventListener('click', function (){
 
 
 
-
+// ------------EDITAR NOME E OCUPACAO NO PERFIL---------
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   nameUser.textContent = inputName.value;
   ocupationUser.textContent = inputOcupation.value;
-  closeForm();
+  closeForm(formElement);
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
+
+
+
+// ------------ADCIONAR CARTOES---------
+function createCards(card) {
+  //pegar o conteudo do id do template
+  const template = document.querySelector('#card-template').content;
+
+
+  //clonar a li com o conteudo
+  const cloneTemplate = template.querySelector('.elements__card').cloneNode(true);
+
+  //clonar conteudo da image
+  cloneTemplate.querySelector('.elements__image').setAttribute('src', card.link);
+
+
+  //clonar o conteudo do texto
+  cloneTemplate.querySelector('.elements__name-card').textContent = card.name;
+
+  return cloneTemplate;
+}
+
+for (const card of initialCards) {
+  const newCard = createCards(card)
+  containerUl.prepend(newCard);
+
+}
+
+
+//OBJETIVO: IRA COLOCAR UM NOME NO INPUT DE TITLE E UM LINK NO INPUT DE LINK E ADICIONAR ESSA IMAGEM NA UL.
+  //ELE VAI PEGAR O NOME E LINK DO OBJETO DENTRO DO ARRAY

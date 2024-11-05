@@ -36,9 +36,9 @@
 
       <section class="elements">
 
-        <ul class="elements__cards">
+        <ul class="elements__cards" id="elementsCards">
 
-          <li class="elements__card">
+          <!-- <li class="elements__card">
             <img class="elements__image" src="./images/vale_de_yosemite.jpg" alt="image of vale de yosemite"/>
 
             <div class="elements__card-content">
@@ -122,7 +122,7 @@
               </button>
             </div>
 
-          </li>
+          </li> -->
         </ul>
       </section>
 
@@ -164,21 +164,28 @@
           <button type="submit" class="popup-edit__create-button">Criar</button>
 
         </form>
-
-
-
-
       </section>
-
-
-
-
-
     </main>
 
     <footer class="footer">
       <p class="footer__paragraph">© 2024 Around The U.S.</p>
     </footer>
+
+    <template id="card-template">
+
+      <li class="elements__card">
+        <img class="elements__image" src="" alt=""/>
+
+        <div class="elements__card-content">
+
+          <p class="elements__name-card"></p>
+
+          <button type="button" class="elements__button-card">
+            <img class="elements__button-image-card" src="" alt="">
+          </button>
+        </div>
+      </li>
+    </template>
 
   </div>
 
