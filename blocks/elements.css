@@ -53,16 +53,26 @@
   line-height: 1.815625rem;
 }
 
-.elements__button-card {
+.elements__button-image-like {
   border: none;
   background-color: #fff;
   padding: 0;
+  width: 21px;
   height: 19px;
+  cursor: pointer;
+  background: url('../images/button_heart.png');
+  background-repeat: no-repeat;
+  background-size: contain;
   cursor: pointer;
 
 
+}
+
+.elements__button-image-like:hover {
+  opacity: 0.6;
 
 }
+
 
 /* TELA 800 PX */
 

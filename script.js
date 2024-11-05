@@ -36,6 +36,13 @@ const createImageButton = document.querySelector('.popup-edit__create-button');
 //formulario de criar imagem
 const formCreateImage = document.querySelector('.popup-edit__form')
 
+
+//botao de curtir
+const likeButton = document.querySelector('.elements__button-like-card');
+
+//imagem do Botao de curtir
+const imageLikeButton = document.querySelector('.elements__button-image-like');
+
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -119,6 +126,15 @@ function createCards(card) {
   //clonar o conteudo do texto
   cloneTemplate.querySelector('.elements__name-card').textContent = card.name;
 
+  cloneTemplate.querySelector('.elements__button-image-like').addEventListener('click', (evt) => {
+    if (evt.target.getAttribute('src') === './images/button_heart.png') {
+      return evt.target.setAttribute('src', './images/heartButtonBlack.png')
+    }
+
+    return evt.target.setAttribute('src', './images/button_heart.png')
+  })
+
+
   return cloneTemplate;
 }
 
@@ -147,5 +163,10 @@ for (const card of initialCards) {
  }
 
  formCreateImage.addEventListener('submit', createUserCards);
+
+
+ //o usuario vai clicar no botao curtir
+ //se o botao NAO tiver clicado a imagem vai ser do coracao BRANCO
+ //se o botao TIVER clicado a imagem vai ser PRETA
 
 
