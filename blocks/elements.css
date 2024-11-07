@@ -21,7 +21,24 @@
   flex-direction: column;
   width: 282px;
   height: 361px;
+  position: relative;
 
+}
+
+
+
+.elements__delete-button {
+  width: 18px;
+  height: 19.3px;
+  position: absolute;
+  top: 10px;
+  right:10px;
+  cursor: pointer;
+
+}
+
+.elements__delete-button:hover {
+  opacity: 0.6;
 }
 
 .elements__image {

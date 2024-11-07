@@ -43,6 +43,11 @@ const likeButton = document.querySelector('.elements__button-like-card');
 //imagem do Botao de curtir
 const imageLikeButton = document.querySelector('.elements__button-image-like');
 
+const popupImage = document.querySelector('.popup-image');
+const popupImageContent = document.querySelector('.popup-image__content');
+const popupImageCloseButton = document.querySelector('.popup-image__close-button');
+const popupImageImg = document.querySelector('.popup-image__img');
+
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -109,7 +114,6 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 
-
 // ------------ADCIONAR CARTOES---------
 function createCards(card) {
   //pegar o conteudo do id do template
@@ -126,6 +130,8 @@ function createCards(card) {
   //clonar o conteudo do texto
   cloneTemplate.querySelector('.elements__name-card').textContent = card.name;
 
+
+  //curtir imagens
   cloneTemplate.querySelector('.elements__button-image-like').addEventListener('click', (evt) => {
     if (evt.target.getAttribute('src') === './images/button_heart.png') {
       return evt.target.setAttribute('src', './images/heartButtonBlack.png')
@@ -134,6 +140,11 @@ function createCards(card) {
     return evt.target.setAttribute('src', './images/button_heart.png')
   })
 
+  //exluir cartoes
+  cloneTemplate.querySelector('.elements__delete-button').addEventListener
+  ('click', (evt) => {
+    evt.target.parentNode.remove();
+  })
 
   return cloneTemplate;
 }
@@ -144,8 +155,16 @@ for (const card of initialCards) {
 
 }
 //---------CRIAR CARTOES INPUT USUARIO--------
- function createUserCards (evt) {
+
+function openPopupImage(imageSrc) {
+  popupImageImg.src = imageSrc;
+  popupImage.classList.add('popup-image_opened');
+}
+
+function createUserCards (evt) {
   evt.preventDefault();
+
+
   //pegar o titulo do cartao
   const inputTitleUser = document.querySelector('#edit-name').value;
 
@@ -156,17 +175,46 @@ for (const card of initialCards) {
   const newCardObject = {name: inputTitleUser, link: inputLinkUser};
 
   const newCard = createCards(newCardObject);
+
+  //para funcionar para novos cartoes tambem
+  newCard.querySelector('.elements__image').addEventListener('click', () => {
+    openPopupImage(newCard.querySelector('.elements__image').src);
+  })
+
   containerUl.prepend(newCard);
 
   closeForm(formAddImage);
-
  }
+
 
  formCreateImage.addEventListener('submit', createUserCards);
 
 
- //o usuario vai clicar no botao curtir
- //se o botao NAO tiver clicado a imagem vai ser do coracao BRANCO
- //se o botao TIVER clicado a imagem vai ser PRETA
+
+
+
+//-------ABRIR IMAGEM AO CLICAR---------
+
+function openPopupImage(imageSrc) {
+  popupImageImg.src = imageSrc;
+  popupImage.classList.add('popup-image_opened')
+}
+
+document.querySelectorAll('.elements__image').forEach((image) => {
+  image.addEventListener('click', () => {
+     openPopupImage(image.src);
+  });
+});
+
+//fechar o popup
+popupImageCloseButton.addEventListener('click', () => {
+  popupImage.classList.remove('popup-image_opened');
+})
+
+
+
+
+
+
 
 

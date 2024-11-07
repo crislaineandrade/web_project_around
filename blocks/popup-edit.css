@@ -48,6 +48,7 @@
 .popup-edit__form {
   margin: 0 36px 36.51px;
 
+
 }
 
 .popup-edit__name {
@@ -59,9 +60,6 @@
   font-size: 0.875rem;
   line-height: 1.030625rem;
   margin-bottom: 29.74px;
-
-
-
 }
 
 .popup-edit__link {
@@ -93,4 +91,77 @@
 
 .popup-edit__create-button:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width:800px) {
+  .popup-edit {
+    max-width: 360px;
+  }
+
+  .popup-edit__name {
+    max-width: 300px;
+
+  }
+
+  .popup-edit__link {
+    max-width: 300px;
+
+  }
+
+  .popup-edit__create-button {
+    width: 300px;
+
+  }
+
+}
+
+@media screen and (max-width:425px) {
+
+  .popup-edit {
+    max-width: 282px;
+  }
+
+  .popu-edit__close-button {
+    top: -15%;
+    right: 3;
+
+  }
+
+  .popup-edit__title{
+    max-width: 238px;
+    margin: 25px 22px 76px 22px;
+    font-size: 1.125rem;
+    line-height:1.361255rem;
+
+  }
+
+  .popup-edit__form {
+    max-width: 320px;
+    margin: 0 22px 39px;
+
+  }
+
+
+
+  .popup-edit__name {
+    max-width: 238px;
+    font-size: 0.875rem;
+    line-height: 1.05875rem;
+    height: 26px;
+    margin-bottom: 39px;
+  }
+
+  .popup-edit__link {
+    max-width: 238px;
+    font-size: 0.875rem;
+    line-height: 1.05875rem;
+    height: 26px;
+    margin-bottom: 46px;
+}
+
+.popup-edit__create-button {
+  max-width: 238px;
+  height: 46px;
+  border-radius: 2px;
+}
 }

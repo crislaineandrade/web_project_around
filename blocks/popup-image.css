@@ -1,0 +1,96 @@
+.popup-image {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Centraliza o popup */
+
+}
+
+.popup-image_opened {
+  display: block;
+  transform: translate(-50%, -50%);
+  width: 816px;
+  height: 540px;
+  position: fixed;
+  z-index: 1;
+  justify-content: center;
+}
+
+.popup-image__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.popup-image__img {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+
+.popup-image__close-button {
+  background-image: url('../images/close_Icon.png');
+  position: absolute;
+  top: -8%;
+  right: -51px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.popup-image__close-button:hover {
+  opacity: 0.6;
+}
+
+/* --------TELA 800PX --------- */
+
+
+@media screen and (max-width:800px){
+  .popup-image_opened {
+    width: 616px;
+  }
+}
+
+/* --------TELA 700PX --------- */
+
+@media screen and (max-width:700px) {
+  .popup-image_opened {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* --------TELA 600PX --------- */
+
+@media screen and (max-width:600px) {
+  .popup-image_opened {
+    width: 350px;
+  }
+}
+
+/* --------TELA 425PX --------- */
+
+@media screen and (max-width:425px) {
+  .popup-image_opened {
+    width: 240px;
+    height: 299px;
+  }
+
+  .popup-image__close-button {
+    top: -13%;
+    right: -29px;
+    width: 30px;
+    height: 30px;
+  }
+
+
+}

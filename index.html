@@ -37,92 +37,6 @@
       <section class="elements">
 
         <ul class="elements__cards" id="elementsCards">
-
-          <!-- <li class="elements__card">
-            <img class="elements__image" src="./images/vale_de_yosemite.jpg" alt="image of vale de yosemite"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Vale de Yosemite</p>
-
-              <button type="button" class="elements__button-card">
-                <img class="elements__button-image-card" src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-          </li>
-
-          <li class="elements__card">
-            <img class="elements__image" src="./images/lago_louise.png" alt="image of lago louise"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Lago Louise</p>
-
-              <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-
-
-          </li>
-
-          <li class="elements__card">
-
-            <img class="elements__image" src="./images/montanhas.png" alt="image of montanhas"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Montanhas Carecas</p>
-
-              <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-
-          </li>
-
-          <li class="elements__card">
-            <img class="elements__image" src="./images/latemar.png" alt="image of latemar"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Latemar</p>
-
-              <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-
-          </li>
-
-          <li class="elements__card">
-
-            <img class="elements__image" src="./images/parque_nacional.png" alt="image of parque nacional"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Parque Nacional</p>
-
-              <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-          </li>
-
-          <li class="elements__card">
-
-            <img class="elements__image" src="./images/lago_di_braies.png" alt="image of lago di braies"/>
-
-            <div class="elements__card-content">
-
-              <p class="elements__name-card">Lago di Braies</p>
-
-              <button type="button" class="elements__button-card">
-                <img src="./images/button_heart.png" alt="image of a heart">
-              </button>
-            </div>
-
-          </li> -->
         </ul>
       </section>
 
@@ -143,12 +57,11 @@
 
             <button type="submit" class="popup__save-button">Salvar</button>
           </fieldset>
-
         </form>
 
       </section>
 
-       <section class="popup-edit"><!--colocar nome para criar cartao -->
+       <section class="popup-edit">
 
         <button type="button" class="popup-edit__close-button">
         </button>
@@ -165,6 +78,13 @@
 
         </form>
       </section>
+
+      <section class="popup-image">
+        <div class="popup-image__content">
+          <img class="popup-image__img" src="" alt="Imagem ampliada">
+          <button class="popup-image__close-button"></button>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
@@ -174,14 +94,18 @@
     <template id="card-template">
 
       <li class="elements__card">
-        <img class="elements__image" src="" alt=""/>
+
+        <img class="elements__delete-button"
+        src="./images/Trash.png" alt="image of the delete button">
+
+        <img class="elements__image" src="" alt="image of a view"/>
 
         <div class="elements__card-content">
 
           <p class="elements__name-card"></p>
 
 
-          <img class="elements__button-image-like" src="./images/button_heart.png" alt="">
+          <img class="elements__button-image-like" src="./images/button_heart.png" alt="image of the heart button">
 
         </div>
       </li>
