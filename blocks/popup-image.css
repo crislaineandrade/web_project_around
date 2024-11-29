@@ -1,36 +1,39 @@
 .popup-image {
   display: none;
-  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  /* Centraliza o popup */
-
 }
 
+
 .popup-image_opened {
-  display: block;
-  transform: translate(-50%, -50%);
-  width: 816px;
-  height: 540px;
-  position: fixed;
-  z-index: 1;
+  display: flex;
   justify-content: center;
+  align-items: center;
+
 }
 
 .popup-image__content {
-  width: 100%;
-  height: 100%;
   display: flex;
+  transform: translate(-50%, -50%);
+  max-width: 816px;
+  max-height: 540px;
+  position: fixed;
+  z-index: 1;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+
 }
 
 .popup-image__img {
   width: 100%;
   height: 100%;
-  justify-content: center;
 }
 
 
@@ -51,43 +54,128 @@
   opacity: 0.6;
 }
 
+/* --------TELA 1024PX --------- */
+
+@media screen and (max-width:1024px) {
+
+  .popup-image {
+    top: 35%;
+
+  }
+
+  .popup-image__content {
+    width: 800px;
+    height: 800px;
+  }
+
+  .popup-image__close-button {
+    top: -10%;
+  }
+
+}
+
+
+/* --------TELA 900PX --------- */
+
+@media screen and (max-width:900px) {
+  .popup-image__content {
+    width: 650px;
+    height: 700px;
+  }
+
+}
+
 /* --------TELA 800PX --------- */
+@media screen and (max-width: 800px){
+  .popup-image {
+    top: 25%;
 
+  }
 
-@media screen and (max-width:800px){
-  .popup-image_opened {
-    width: 616px;
+  .popup-image__content {
+    width: 500px;
+    height: 500px;
+  }
+
+  .popup-image__close-button {
+    top: -10%;
   }
 }
+
+
+
 
 /* --------TELA 700PX --------- */
 
-@media screen and (max-width:700px) {
-  .popup-image_opened {
+@media screen and (max-width: 700px){
+
+  .popup-image {
+    top: 15%;
+
+  }
+
+  .popup-image__content {
     width: 400px;
     height: 400px;
+
+  }
+
+  .popup-image__close-button {
+    top: -12%;
+    right: -44px;
   }
 }
+
+
 
 /* --------TELA 600PX --------- */
 
-@media screen and (max-width:600px) {
-  .popup-image_opened {
+@media screen and (max-width: 600px){
+
+
+  .popup-image__content {
     width: 350px;
+    height: 350px;
+
+  }
+
+  .popup-image__close-button {
+    top: -15%;
   }
 }
+
+
+/* --------TELA 500PX --------- */
+
+
+/* @media screen and (max-width: 500px){
+  .popup-image {
+    top: 15%;
+
+  }
+} */
+
+
 
 /* --------TELA 425PX --------- */
 
 @media screen and (max-width:425px) {
-  .popup-image_opened {
+
+  .popup-image {
+    top:10%;
+
+
+  }
+
+  .popup-image__content {
     width: 240px;
     height: 299px;
+
   }
 
   .popup-image__close-button {
-    top: -13%;
-    right: -29px;
+    top: -15%;
+    right: -31px;
     width: 30px;
     height: 30px;
   }

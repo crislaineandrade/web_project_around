@@ -17,6 +17,10 @@ const inputName = document.querySelector('.popup__name');
 //input da ocupacao
 const inputOcupation = document.querySelector('.popup__ocupation');
 
+// const popups = document.querySelectorAll('.modal')
+
+const images = document.querySelectorAll('elements__image')
+
 //botao de editar
 // const popupEditForm = document.querySelector('.profile__add-button');
 
@@ -74,6 +78,8 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
   }
 ];
+
+
 
 // ------------ABRIR FORMULARIO---------
 
@@ -209,6 +215,45 @@ document.querySelectorAll('.elements__image').forEach((image) => {
 //fechar o popup
 popupImageCloseButton.addEventListener('click', () => {
   popupImage.classList.remove('popup-image_opened');
+})
+
+
+
+const sectionElements = document.querySelector('.elements')
+
+document.addEventListener('keydown', function(evt) {
+  if (evt.key === 'Escape') {
+    if (formElement.classList.contains('popup_opened')) {
+      formElement.classList.remove('popup_opened')
+    }
+    else if (formAddImage.classList.contains('popup_opened')) {
+      formAddImage.classList.remove('popup_opened')
+    }
+
+    else if (popupImage.classList.contains('popup-image_opened')) {
+      popupImage.classList.remove('popup-image_opened')
+    }
+  }
+})
+
+
+
+document.addEventListener('click', function(evt) {
+  const targetEvt = evt.target
+  console.log(targetEvt)
+
+  if (targetEvt.classList.contains('popup_opened')) {
+  formElement.classList.remove('popup_opened')
+}
+  if (targetEvt.classList.contains('popup_opened')) {
+  formAddImage.classList.remove('popup_opened')
+}
+
+  if (targetEvt.classList.contains('popup-image_opened')) {
+    console.log('verificar')
+  popupImage.classList.remove('popup-image_opened')
+}
+
 })
 
 
