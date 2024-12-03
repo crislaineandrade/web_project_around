@@ -17,12 +17,7 @@ const inputName = document.querySelector('.popup__name');
 //input da ocupacao
 const inputOcupation = document.querySelector('.popup__ocupation');
 
-// const popups = document.querySelectorAll('.modal')
-
 const images = document.querySelectorAll('elements__image')
-
-//botao de editar
-// const popupEditForm = document.querySelector('.profile__add-button');
 
 //formulario de adcionar imagem (popup add)
 const formAddImage = document.querySelector('.popup-edit')
@@ -240,18 +235,20 @@ document.addEventListener('keydown', function(evt) {
 
 document.addEventListener('click', function(evt) {
   const targetEvt = evt.target
-  console.log(targetEvt)
+
+
+  if (targetEvt.classList.contains('popup_opened')){
+    formElement.classList.remove('popup_opened')
+
+  }
+
 
   if (targetEvt.classList.contains('popup_opened')) {
-  formElement.classList.remove('popup_opened')
-}
-  if (targetEvt.classList.contains('popup_opened')) {
-  formAddImage.classList.remove('popup_opened')
+    formAddImage.classList.remove('popup_opened')
 }
 
   if (targetEvt.classList.contains('popup-image_opened')) {
-    console.log('verificar')
-  popupImage.classList.remove('popup-image_opened')
+    popupImage.classList.remove('popup-image_opened')
 }
 
 })

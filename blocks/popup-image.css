@@ -4,10 +4,6 @@
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 
@@ -20,20 +16,21 @@
 
 .popup-image__content {
   display: flex;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 816px;
-  max-height: 540px;
+  max-width: 740px;
+  width: 100%;
   position: fixed;
   z-index: 1;
   justify-content: center;
-  top: 50%;
-  left: 50%;
+
+
 
 }
 
 .popup-image__img {
   width: 100%;
-  height: 100%;
 }
 
 
@@ -54,131 +51,28 @@
   opacity: 0.6;
 }
 
+
 /* --------TELA 1024PX --------- */
 
 @media screen and (max-width:1024px) {
-
-  .popup-image {
-    top: 35%;
-
-  }
-
   .popup-image__content {
-    width: 800px;
-    height: 800px;
-  }
-
-  .popup-image__close-button {
-    top: -10%;
+    max-width: 480px;
   }
 
 }
 
 
-/* --------TELA 900PX --------- */
 
-@media screen and (max-width:900px) {
+/* --------TELA 544PX --------- */
+
+@media screen and (max-width: 544px){
   .popup-image__content {
-    width: 650px;
-    height: 700px;
-  }
-
-}
-
-/* --------TELA 800PX --------- */
-@media screen and (max-width: 800px){
-  .popup-image {
-    top: 25%;
-
-  }
-
-  .popup-image__content {
-    width: 500px;
-    height: 500px;
+    max-width: 240px;
   }
 
   .popup-image__close-button {
-    top: -10%;
-  }
-}
-
-
-
-
-/* --------TELA 700PX --------- */
-
-@media screen and (max-width: 700px){
-
-  .popup-image {
-    top: 15%;
+    top: -25%;
+    right: -47px;
 
   }
-
-  .popup-image__content {
-    width: 400px;
-    height: 400px;
-
-  }
-
-  .popup-image__close-button {
-    top: -12%;
-    right: -44px;
-  }
-}
-
-
-
-/* --------TELA 600PX --------- */
-
-@media screen and (max-width: 600px){
-
-
-  .popup-image__content {
-    width: 350px;
-    height: 350px;
-
-  }
-
-  .popup-image__close-button {
-    top: -15%;
-  }
-}
-
-
-/* --------TELA 500PX --------- */
-
-
-/* @media screen and (max-width: 500px){
-  .popup-image {
-    top: 15%;
-
-  }
-} */
-
-
-
-/* --------TELA 425PX --------- */
-
-@media screen and (max-width:425px) {
-
-  .popup-image {
-    top:10%;
-
-
-  }
-
-  .popup-image__content {
-    width: 240px;
-    height: 299px;
-
-  }
-
-  .popup-image__close-button {
-    top: -15%;
-    right: -31px;
-    width: 30px;
-    height: 30px;
-  }
-
-
 }

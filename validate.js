@@ -4,33 +4,29 @@ const form = document.forms.formProfile;
 const formInput = form.elements.name;
 // const errorMessage = form.querySelector(`.${formInput.id}-error`);
 const ocupationInput = form.elements.ocupation;
-// const ocupationErrorMessage = form.querySelector(`.${ocupationInput.id}-error`)
-
-
-
 
 // Mostrar mensagem de erro
-function showInputError(formElement, inputElement) {
+function showInputError(formElement, inputElement, config) {
   const errorMessage = formElement.querySelector(`.${inputElement.id}-error`);
   errorMessage.textContent = inputElement.validationMessage; // Usando o validationMessage do input
-  errorMessage.classList.add('popup__form_name-input-error_active');
+  errorMessage.classList.add(config.errorClass);
   inputElement.classList.add('popup__name_no-margin')
 }
 
 // Esconder mensagem de erro
-function hideInputError(formElement, inputElement) {
+function hideInputError(formElement, inputElement, config) {
   const errorMessage = formElement.querySelector(`.${inputElement.id}-error`);
   errorMessage.textContent = '';
-  errorMessage.classList.remove('popup__form_name-input-error_active');
+  errorMessage.classList.remove(config.errorClass);
   inputElement.classList.remove('popup__name_no-margin')
 }
 
 // Validar o input
-function isValid(formElement, inputElement) {
+function isValid(formElement, inputElement, config) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement); // Exibe erro caso o input não seja válido
+    showInputError(formElement, inputElement, config); // Exibe erro caso o input não seja válido
   } else {
-    hideInputError(formElement, inputElement); // Esconde o erro caso o input seja válido
+    hideInputError(formElement, inputElement, config); // Esconde o erro caso o input seja válido
   }
 }
 
@@ -42,46 +38,53 @@ const hasInvalidInput = (inputList) => {
 }
 
 // Controla o estado do botão de envio
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('form__submit_inactive');
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true; // Desabilita o botão
   } else {
-    buttonElement.classList.remove('form__submit_inactive');
+    buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = false; // Habilita o botão
   }
 }
 
 // Adiciona os event listeners para todos os campos do formulário
-function setEventListener(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('input')); // Seleciona todos os inputs
-  const buttonElement = formElement.querySelector('.form__submit'); // Seleciona o botão de submit
+function setEventListener(formElement, config) {
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector)); // Seleciona todos os inputs
+  const buttonElement = formElement.querySelector(config.submitButtonClass); // Seleciona o botão de submit
 
   // Ajusta o estado do botão inicialmente
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 
   // Adiciona o evento de input nos campos
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement); // Valida o input sempre que o usuário digitar
-      toggleButtonState(inputList, buttonElement); // Atualiza o estado do botão
+      isValid(formElement, inputElement, config); // Valida o input sempre que o usuário digitar
+      toggleButtonState(inputList, buttonElement, config); // Atualiza o estado do botão
     });
   });
 }
 
 // Habilita a validação em todos os formulários
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('form')); // Seleciona todos os formulários
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector)); // Seleciona todos os formulários
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault(); // Impede o envio do formulário
     });
-    setEventListener(formElement); // Adiciona o event listener em cada formulário
+    setEventListener(formElement, config); // Adiciona o event listener em cada formulário
   });
 }
 
-enableValidation(); // Chama a função para ativar a validação
+enableValidation({
+  formSelector: 'form',
+  inputSelector: 'input',
+  submitButtonClass: '.form__submit',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass:'popup__form_name-input-error_active'
+})
 
 
 
