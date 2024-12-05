@@ -19,14 +19,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 740px;
   width: 100%;
   position: fixed;
   z-index: 1;
   justify-content: center;
-
-
-
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .popup-image__img {
@@ -52,27 +50,21 @@
 }
 
 
-/* --------TELA 1024PX --------- */
-
-@media screen and (max-width:1024px) {
-  .popup-image__content {
-    max-width: 480px;
-  }
-
-}
-
-
 
 /* --------TELA 544PX --------- */
 
 @media screen and (max-width: 544px){
-  .popup-image__content {
-    max-width: 240px;
+  .popup-image__img {
+    height: 299px;
   }
 
+
+
   .popup-image__close-button {
-    top: -25%;
-    right: -47px;
+    top: -15%;
+    right: -27px;
+    width: 30px;
+    height: 30px;
 
   }
 }
