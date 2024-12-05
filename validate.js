@@ -2,7 +2,6 @@
 const form = document.forms.formProfile;
 //input do formulario
 const formInput = form.elements.name;
-// const errorMessage = form.querySelector(`.${formInput.id}-error`);
 const ocupationInput = form.elements.ocupation;
 
 // Mostrar mensagem de erro
