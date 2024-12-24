@@ -1,3 +1,4 @@
+import Card from './scripts/Card.js'
 // ------------VARIAVEIS---------
 
 //botao de editar
@@ -116,50 +117,51 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 // ------------ADCIONAR CARTOES---------
-function createCards(card) {
-  //pegar o conteudo do id do template
-  const template = document.querySelector('#card-template').content;
+// function createCards(card) {
+//   //pegar o conteudo do id do template
+//   const template = document.querySelector('#card-template').content;
 
 
-  //clonar a li com o conteudo
-  const cloneTemplate = template.querySelector('.elements__card').cloneNode(true);
+//   //clonar a li com o conteudo
+//   const cloneTemplate = template.querySelector('.elements__card').cloneNode(true);
 
-  //clonar conteudo da image
-  cloneTemplate.querySelector('.elements__image').setAttribute('src', card.link);
-
-
-  //clonar o conteudo do texto
-  cloneTemplate.querySelector('.elements__name-card').textContent = card.name;
+//   //clonar conteudo da image
+//   cloneTemplate.querySelector('.elements__image').setAttribute('src', card.link);
 
 
-  //curtir imagens
-  cloneTemplate.querySelector('.elements__button-image-like').addEventListener('click', (evt) => {
-    if (evt.target.getAttribute('src') === './images/button_heart.png') {
-      return evt.target.setAttribute('src', './images/heartButtonBlack.png')
-    }
+//   //clonar o conteudo do texto
+//   cloneTemplate.querySelector('.elements__name-card').textContent = card.name;
 
-    return evt.target.setAttribute('src', './images/button_heart.png')
-  })
 
-  //exluir cartoes
-  cloneTemplate.querySelector('.elements__delete-button').addEventListener
-  ('click', (evt) => {
-    evt.target.parentNode.remove();
-  })
+//   //curtir imagens
+//   cloneTemplate.querySelector('.elements__button-image-like').addEventListener('click', (evt) => {
+//     if (evt.target.getAttribute('src') === './images/button_heart.png') {
+//       return evt.target.setAttribute('src', './images/heartButtonBlack.png')
+//     }
 
-  return cloneTemplate;
-}
+//     return evt.target.setAttribute('src', './images/button_heart.png')
+//   })
 
-for (const card of initialCards) {
-  const newCard = createCards(card)
-  containerUl.prepend(newCard);
+//   //exluir cartoes
+//   cloneTemplate.querySelector('.elements__delete-button').addEventListener
+//   ('click', (evt) => {
+//     evt.target.parentNode.remove();
+//   })
 
-}
+//   return cloneTemplate;
+// }
+
+// for (const card of initialCards) {
+//   const newCard = createCards(card)
+//   containerUl.prepend(newCard);
+
+// }
 //---------CRIAR CARTOES INPUT USUARIO--------
 
 function openPopupImage(imageSrc) {
   popupImageImg.src = imageSrc;
   popupImage.classList.add('popup-image_opened');
+  //adcionar o texto
 }
 
 function createUserCards (evt) {
@@ -176,6 +178,7 @@ function createUserCards (evt) {
   const newCardObject = {name: inputTitleUser, link: inputLinkUser};
 
   const newCard = createCards(newCardObject);
+  // const newCard = new Card(newCardObject, template, op);
 
   //para funcionar para novos cartoes tambem
   newCard.querySelector('.elements__image').addEventListener('click', () => {
@@ -252,6 +255,22 @@ document.addEventListener('click', function(evt) {
 }
 
 })
+
+//--------------------------------------------
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '#card-template', openPopupImage)
+  const cardElement = card.generateCard()
+
+  document.querySelector('.elements__cards').append(cardElement)
+})
+
+// class FormValidator {
+//   constructor()
+//   //verificar validade do campo
+//   //alterar o estasdo do botao submit
+//   //adcionar todos os manipuladores necessarios
+// }
 
 
 
