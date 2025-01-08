@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body class="body">
+<body>
   <div class="page overlay">
     <header class="header">
       <img class="header__logo" src="./images/logo_header.png" alt="logo">
@@ -51,23 +51,18 @@
           <h2 class="popup__title">Editar perfil</h2>
 
           <form class="popup__form" name="formProfile" novalidate>
-          <fieldset class="popup__fieldset">
+            <fieldset class="popup__fieldset">
 
-            <input type="text" class="popup__name" id="name" name="name" placeholder="Nome" required minlength="2" maxlength="40">
+              <input type="text" class="popup__name" id="name" name="name" placeholder="Nome" required minlength="2" maxlength="40">
+              <span class="name-error popup__input_type_error"></span>
 
-            <span class="name-error popup__input_type_error"></span>
+              <input type="text" class="popup__ocupation" id="ocupation" name="ocupation" placeholder="Sobre mim" required minlength="2" maxlength="200">
+              <span class="ocupation-error popup__input_type_error"></span>
 
-            <input type="text" class="popup__ocupation" id="ocupation" name="ocupation" placeholder="Sobre mim" required minlength="2" maxlength="200">
-            <span class="ocupation-error popup__input_type_error"></span>
-
-            <button type="submit" class="popup__save-button form__submit">Salvar</button>
-          </fieldset>
+              <button type="submit" class="popup__save-button form__submit">Salvar</button>
+            </fieldset>
         </form>
-
-
         </div>
-
-
 
       </section>
 
@@ -88,7 +83,7 @@
             <input type="url" class="popup-edit__link" id="link" placeholder="Link de imagem" required>
             <span class="link-error popup__input_type_error"></span>
 
-            <button type="submit" class=" popup-edit__create-button form__submit">Criar</button>
+            <button type="submit" class="popup-edit__create-button form__submit">Criar</button>
 
           </form>
 
@@ -100,7 +95,7 @@
       <section class="popup-image">
         <div class="popup-image__content">
           <img class="popup-image__img" src="" alt="Imagem ampliada">
-          <p></p>
+           <p class="popup-image__subtitle"></p>
           <button class="popup-image__close-button"></button>
         </div>
       </section>
@@ -132,7 +127,6 @@
 
   </div>
 
-  <script src="script.js"></script>
-  <script src="validate.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 export default class Card {
   constructor(data, cardSeletor, openImagePopup) {
-    this._text = data.text;
-    this._image = data.image;
+    this._text = data.name;
+    this._image = data.link;
     this._cardSelector = cardSeletor;
     this._openImagePopup = openImagePopup;
   }
@@ -22,7 +22,7 @@ export default class Card {
     this._element.querySelector(".elements__name-card").textContent =
       this._text;
 
-    this._openPopupImage();
+    this._openPopupImage(this._image, this._text);
 
     this._likeButton();
 
@@ -46,13 +46,11 @@ export default class Card {
       });
   }
 
-  _openPopupImage() {
+  _openPopupImage(imageSrc, title) {
     this._element
       .querySelector(".elements__image")
       .addEventListener("click", () =>
-        this._openImagePopup(document.querySelector(".popup-image"))
-      //adcionar imagem e texto
-      );
+        this._openImagePopup(imageSrc, title))
   }
 
   _deleteCard() {
