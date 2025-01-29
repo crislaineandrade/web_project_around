@@ -1,5 +1,6 @@
 import Card from './scripts/Card.js';
 import FormValidator from './scripts/FormValidator.js';
+import Section from './scripts/Section.js'
 import { closeModal, pressEscCloseModal, clickOutCloseModal, formElement, formAddImage, popupImage } from './utils.js';
 
 
@@ -76,6 +77,17 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 
 //---------CRIAR CARTOES INPUT USUARIO--------
 
+const section = new Section({
+  items: initialCards,
+  renderer: (data) => { //o que é esse data?
+    section.addItem(createCard(data))
+    }
+  }, '.elements__cards'
+
+)
+section.renderer();
+
+
 function createUserCards (evt) {
   evt.preventDefault();
 
@@ -91,12 +103,18 @@ function createUserCards (evt) {
 
   //Instancia para editar o popup de imagem criada pelo usuario
 
-  const newCardUser = new Card(newCardObject, '#card-template', openPopupImage);
-  const newCard = newCardUser.generateCard();
+  const newCard = createCard(newCardObject)
 
-  containerUl.prepend(newCard);
+  section.addNewItem(newCard);
+
 
   closeModal(formAddImage);
+ }
+
+ function createCard(data) {
+  const newCardUser = new Card(data, '#card-template', openPopupImage);
+  return newCardUser.generateCard();
+
  }
 
  formCreateImage.addEventListener('submit', createUserCards);
@@ -123,14 +141,6 @@ popupImageCloseButton.addEventListener('click', () => {
 
 //-----------------CRIANDO AS INSTANCIAS-------------------
 
-//Instancia para cada cartao inicial
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template', openPopupImage);
-  const cardElement = card.generateCard();
-  document.querySelector('.elements__cards').append(cardElement);
-})
-
 //Instancia para o popup de editar perfil
 const profileFormValidator = new FormValidator(config, document.querySelector('.popup__form'));
 profileFormValidator.enableValidation();
@@ -140,11 +150,13 @@ const imagesFormValidator = new FormValidator(config, document.querySelector('.p
 imagesFormValidator.enableValidation();
 
 
-
 //CHAMAR FUNCOES PARA CLICAR NO ESC E QUALQUER LUGAR NA TELA
 
 document.addEventListener('keydown', pressEscCloseModal);
 document.addEventListener('click', clickOutCloseModal);
+
+
+
 
 
 
