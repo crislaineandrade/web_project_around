@@ -1,7 +1,8 @@
 import Card from './scripts/Card.js';
 import FormValidator from './scripts/FormValidator.js';
 import Section from './scripts/Section.js'
-import { closeModal, pressEscCloseModal, clickOutCloseModal, formElement, formAddImage, popupImage } from './utils.js';
+import Popup from './scripts/Popup.js';
+import { closePopupProfile, closePopupAddImage, pressEscCloseModalProfile, formElement, formAddImage, popupImage, imagePopup } from './utils.js';
 
 
 // ------------VARIAVEIS---------
@@ -70,7 +71,7 @@ function handleProfileFormSubmit(evt) {
 
   nameUser.textContent = inputName.value;
   ocupationUser.textContent = inputOcupation.value;
-  closeModal(formElement);
+  closePopupProfile(formElement);
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
@@ -108,7 +109,7 @@ function createUserCards (evt) {
   section.addNewItem(newCard);
 
 
-  closeModal(formAddImage);
+  closePopupAddImage(formAddImage);
  }
 
  function createCard(data) {
@@ -125,7 +126,8 @@ function createUserCards (evt) {
 function openPopupImage(imageSrc, subtitleImage) {
   popupImageImg.src = imageSrc;
   popupImageSubtitle.textContent = subtitleImage
-  popupImage.classList.add('popup-image_opened')
+  // popupImage.classList.add('popup-image_opened')
+  popupImage.classList.add('popup_opened')
 }
 
 document.querySelectorAll('.elements__image').forEach((image) => {
@@ -136,7 +138,8 @@ document.querySelectorAll('.elements__image').forEach((image) => {
 
 //fechar o popup
 popupImageCloseButton.addEventListener('click', () => {
-  popupImage.classList.remove('popup-image_opened');
+  // popupImage.classList.remove('popup-image_opened');
+  popupImage.classList.remove('popup_opened');
 })
 
 //-----------------CRIANDO AS INSTANCIAS-------------------
@@ -152,8 +155,11 @@ imagesFormValidator.enableValidation();
 
 //CHAMAR FUNCOES PARA CLICAR NO ESC E QUALQUER LUGAR NA TELA
 
-document.addEventListener('keydown', pressEscCloseModal);
-document.addEventListener('click', clickOutCloseModal);
+
+
+
+
+
 
 
 

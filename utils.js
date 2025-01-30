@@ -5,60 +5,67 @@ const closeEditButton = document.querySelector('.popup-edit__close-button');
 export const formElement = document.querySelector('.popup');
 export const formAddImage = document.querySelector('.popup-edit');
 export const popupImage = document.querySelector('.popup-image');
+export const imagePopup = document.querySelector('.elements__image')
+import Popup from "./scripts/Popup.js";
 
-// ------------ABRIR FORMULARIO---------
+// ------------INSTANCIAS ABRIR FORMULARIO---------
 
-function openModal(formReceived) {
-  formReceived.classList.add("popup_opened");
-}
-openButton.addEventListener("click", function () {
-  openModal(formElement);
-});
-addImageButton.addEventListener("click", function () {
-  openModal(formAddImage);
-});
+
+const openPopupProfile = new Popup(formElement);
+openButton.addEventListener('click', () => {
+  openPopupProfile.open()
+})
+
+const openPopupAddImage = new Popup(formAddImage);
+addImageButton.addEventListener('click', () => {
+  openPopupAddImage.open()
+})
+
+
 
 // ------------FECHAR FORMULARIO---------
-function closeModal(formReceived) {
-  formReceived.classList.remove("popup_opened");
-}
 
-closeButton.addEventListener("click", function () {
-  closeModal(formElement);
-});
-closeEditButton.addEventListener("click", function () {
-  closeModal(formAddImage);
-});
+const closePopupProfile = new Popup(formElement)
+closeButton.addEventListener('click', () => {
+  closePopupProfile.close()
+})
 
-//-------CLICAR EM QUALQUER LUGAR PARA FECHAR---------
-
-function pressEscCloseModal(evt) {
-  if (evt.key === "Escape") {
-    if (formElement.classList.contains("popup_opened")) {
-      formElement.classList.remove("popup_opened");
-    } else if (formAddImage.classList.contains("popup_opened")) {
-      formAddImage.classList.remove("popup_opened");
-    } else if (popupImage.classList.contains("popup-image_opened")) {
-      popupImage.classList.remove("popup-image_opened");
-    }
-  }
-}
-
-function clickOutCloseModal(evt) {
-  const targetEvt = evt.target;
-
-  if (targetEvt.classList.contains("popup_opened")) {
-    formElement.classList.remove("popup_opened");
-  }
-
-  if (targetEvt.classList.contains("popup_opened")) {
-    formAddImage.classList.remove("popup_opened");
-  }
-
-  if (targetEvt.classList.contains("popup-image_opened")) {
-    popupImage.classList.remove("popup-image_opened");
-  }
-}
+const closePopupAddImage = new Popup(formAddImage)
+closeEditButton.addEventListener('click', () => {
+  closePopupAddImage.close()
+})
 
 
-export { openModal, closeModal, pressEscCloseModal, clickOutCloseModal };
+//-------CLICAR NO ESC PARA FECHAR---------
+
+const pressEscCloseModalProfile = new Popup(formElement);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalProfile.keydownCloseEsc(evt)
+})
+
+const pressEscCloseModalAddImage = new Popup(formAddImage);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalAddImage.keydownCloseEsc(evt)
+})
+
+const pressEscCloseModalImage = new Popup(popupImage);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalImage.keydownCloseEsc(evt)
+})
+
+//-------CLICAR EM QUALQUER LUGAR DA TELA PARA FECHAR---------
+
+
+const clickOutCloseProfile = new Popup(formElement);
+clickOutCloseProfile.setEventListeners();
+
+const clickOutCloseAddImage = new Popup(formAddImage);
+clickOutCloseAddImage.setEventListeners();
+
+const clickOutCloseImage = new Popup(popupImage);
+clickOutCloseImage.setEventListeners();
+
+
+
+
+export {openPopupProfile, openPopupAddImage, closePopupProfile,closePopupAddImage, pressEscCloseModalProfile };
