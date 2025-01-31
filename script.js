@@ -1,8 +1,8 @@
 import Card from './scripts/Card.js';
 import FormValidator from './scripts/FormValidator.js';
 import Section from './scripts/Section.js'
-import Popup from './scripts/Popup.js';
-import { closePopupProfile, closePopupAddImage, pressEscCloseModalProfile, formElement, formAddImage, popupImage, imagePopup } from './utils.js';
+import { closePopupProfile, closePopupAddImage, formElement, formAddImage, popupImage } from './utils.js';
+import PopupWithImage from './scripts/PopupWithImage.js'
 
 
 // ------------VARIAVEIS---------
@@ -25,17 +25,14 @@ const inputName = document.querySelector('.popup__name');
 //input da ocupacao
 const inputOcupation = document.querySelector('.popup__ocupation');
 
-
 //onde var ser adcionado (ul)
 const containerUl = document.querySelector('.elements__cards');
 
 //formulario de criar imagem
 const formCreateImage = document.querySelector('.popup-edit__form')
 
-const popupImageCloseButton = document.querySelector('.popup-image__close-button');
-const popupImageImg = document.querySelector('.popup-image__img');
 
-const popupImageSubtitle = document.querySelector('.popup-image__subtitle')
+
 
 const initialCards = [
   {
@@ -112,35 +109,15 @@ function createUserCards (evt) {
   closePopupAddImage(formAddImage);
  }
 
+const openImage = new PopupWithImage(popupImage)
+
  function createCard(data) {
-  const newCardUser = new Card(data, '#card-template', openPopupImage);
+  const newCardUser = new Card(data, '#card-template', () => openImage.open({imageSrc: data.link, subtitleImage: data.name}));
   return newCardUser.generateCard();
 
  }
 
  formCreateImage.addEventListener('submit', createUserCards);
-
-
-//-------ABRIR IMAGEM AO CLICAR---------
-
-function openPopupImage(imageSrc, subtitleImage) {
-  popupImageImg.src = imageSrc;
-  popupImageSubtitle.textContent = subtitleImage
-  // popupImage.classList.add('popup-image_opened')
-  popupImage.classList.add('popup_opened')
-}
-
-document.querySelectorAll('.elements__image').forEach((image) => {
-  image.addEventListener('click', () => {
-     openPopupImage(image.src);
-  });
-});
-
-//fechar o popup
-popupImageCloseButton.addEventListener('click', () => {
-  // popupImage.classList.remove('popup-image_opened');
-  popupImage.classList.remove('popup_opened');
-})
 
 //-----------------CRIANDO AS INSTANCIAS-------------------
 
@@ -152,8 +129,6 @@ profileFormValidator.enableValidation();
 const imagesFormValidator = new FormValidator(config, document.querySelector('.popup-edit__form'));
 imagesFormValidator.enableValidation();
 
-
-//CHAMAR FUNCOES PARA CLICAR NO ESC E QUALQUER LUGAR NA TELA
 
 
 
