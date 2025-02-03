@@ -10,11 +10,6 @@ export const imagePopup = document.querySelector('.elements__image')
 import Popup from "./scripts/Popup.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 
-// export const popupImageSrc = document.querySelector('.popup-image__img');
-
-// export const popupImageSubtitle = document.querySelector('.popup-image__subtitle')
-
-
 // ------------INSTANCIAS ABRIR FORMULARIO---------
 
 

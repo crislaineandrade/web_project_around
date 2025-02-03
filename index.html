@@ -53,10 +53,10 @@
           <form class="popup__form" name="formProfile" novalidate>
             <fieldset class="popup__fieldset">
 
-              <input type="text" class="popup__name" id="name" name="name" placeholder="Nome" required minlength="2" maxlength="40">
+              <input type="text" class="popup__name popup__input" id="name" name="name" placeholder="Nome" required minlength="2" maxlength="40">
               <span class="name-error popup__input_type_error"></span>
 
-              <input type="text" class="popup__ocupation" id="ocupation" name="ocupation" placeholder="Sobre mim" required minlength="2" maxlength="200">
+              <input type="text" class="popup__ocupation popup__input" id="ocupation" name="ocupation" placeholder="Sobre mim" required minlength="2" maxlength="200">
               <span class="ocupation-error popup__input_type_error"></span>
 
               <button type="submit" class="popup__save-button form__submit">Salvar</button>
@@ -77,10 +77,10 @@
 
           <form class="popup-edit__form">
 
-            <input type="text" class="popup-edit__name" id="edit-name" placeholder="Título" required minlength="2" maxlength="30">
+            <input type="text" class="popup-edit__name popup__input" id="edit-name" placeholder="Título" required minlength="2" maxlength="30" name="name">
             <span class="edit-name-error popup__input_type_error"></span>
 
-            <input type="url" class="popup-edit__link" id="link" placeholder="Link de imagem" required>
+            <input type="url" class="popup-edit__link popup__input" id="link" placeholder="Link de imagem" required name="link">
             <span class="link-error popup__input_type_error"></span>
 
             <button type="submit" class="popup-edit__create-button form__submit">Criar</button>

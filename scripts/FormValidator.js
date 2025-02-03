@@ -9,6 +9,7 @@ export default class FormValidator {
   _showInputError(inputElement) {
     const errorMessage = this._form.querySelector(`.${inputElement.id}-error`);
     errorMessage.textContent = inputElement.validationMessage;
+
     errorMessage.classList.add(this._config.errorClass);
     inputElement.classList.add("popup__name_no-margin");
   }

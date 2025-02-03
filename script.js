@@ -1,8 +1,9 @@
 import Card from './scripts/Card.js';
 import FormValidator from './scripts/FormValidator.js';
 import Section from './scripts/Section.js'
-import { closePopupProfile, closePopupAddImage, formElement, formAddImage, popupImage } from './utils.js';
+import {formElement, formAddImage, popupImage } from './utils.js';
 import PopupWithImage from './scripts/PopupWithImage.js'
+import PopupWithForm from './scripts/PopupWithForm.js';
 
 
 // ------------VARIAVEIS---------
@@ -30,8 +31,6 @@ const containerUl = document.querySelector('.elements__cards');
 
 //formulario de criar imagem
 const formCreateImage = document.querySelector('.popup-edit__form')
-
-
 
 
 const initialCards = [
@@ -62,16 +61,6 @@ const initialCards = [
 ];
 
 
-// ------------EDITAR NOME E OCUPACAO NO PERFIL---------
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  nameUser.textContent = inputName.value;
-  ocupationUser.textContent = inputOcupation.value;
-  closePopupProfile(formElement);
-}
-
-formElement.addEventListener('submit', handleProfileFormSubmit);
 
 //---------CRIAR CARTOES INPUT USUARIO--------
 
@@ -86,38 +75,40 @@ const section = new Section({
 section.renderer();
 
 
-function createUserCards (evt) {
-  evt.preventDefault();
+// ------------EDITAR NOME E OCUPACAO NO PERFIL---------
 
-  //pegar o titulo do cartao
-  const inputTitleUser = document.querySelector('#edit-name').value;
+const popupWithFormEditProfile = new PopupWithForm(formElement, (formData) => {
+  const newCardProfile = {name: formData.name,
+  ocupation: formData.ocupation
+  }
+  nameUser.textContent = newCardProfile.name;
+  ocupationUser.textContent = newCardProfile.ocupation;
 
-  //pegar link do cartao
-  const inputLinkUser = document.querySelector('#link').value;
+})
+popupWithFormEditProfile.setEventListeners()
 
-  //adcionar na array initialCards
-  const newCardObject = {name: inputTitleUser, link: inputLinkUser};
+  //fazer a outra instancia do popup de link
 
+const popupWithAddImage = new PopupWithForm(formAddImage, (formData) => {
+  const newCardImage = {name: formData.name,
+    link: formData.link
+  }
+  const newCard = createCard(newCardImage)
+  section.addNewItem(newCard)
 
-  //Instancia para editar o popup de imagem criada pelo usuario
+})
 
-  const newCard = createCard(newCardObject)
+popupWithAddImage.setEventListeners()
 
-  section.addNewItem(newCard);
-
-
-  closePopupAddImage(formAddImage);
- }
 
 const openImage = new PopupWithImage(popupImage)
 
  function createCard(data) {
   const newCardUser = new Card(data, '#card-template', () => openImage.open({imageSrc: data.link, subtitleImage: data.name}));
+
   return newCardUser.generateCard();
 
  }
-
- formCreateImage.addEventListener('submit', createUserCards);
 
 //-----------------CRIANDO AS INSTANCIAS-------------------
 
