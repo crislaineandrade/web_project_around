@@ -4,6 +4,7 @@ import Section from './scripts/Section.js'
 import {formElement, formAddImage, popupImage } from './utils.js';
 import PopupWithImage from './scripts/PopupWithImage.js'
 import PopupWithForm from './scripts/PopupWithForm.js';
+import UserInfo from './scripts/UserInfo.js';
 
 
 // ------------VARIAVEIS---------
@@ -78,14 +79,18 @@ section.renderer();
 // ------------EDITAR NOME E OCUPACAO NO PERFIL---------
 
 const popupWithFormEditProfile = new PopupWithForm(formElement, (formData) => {
-  const newCardProfile = {name: formData.name,
-  ocupation: formData.ocupation
-  }
-  nameUser.textContent = newCardProfile.name;
-  ocupationUser.textContent = newCardProfile.ocupation;
+
+
+  console.log(ocupationUser)
+  const userInfo = new UserInfo({name: nameUser, ocupation: ocupationUser})
+  userInfo.setUserInfo(formData.name, formData.ocupation)
 
 })
 popupWithFormEditProfile.setEventListeners()
+
+
+
+
 
   //fazer a outra instancia do popup de link
 
@@ -106,9 +111,17 @@ const openImage = new PopupWithImage(popupImage)
  function createCard(data) {
   const newCardUser = new Card(data, '#card-template', () => openImage.open({imageSrc: data.link, subtitleImage: data.name}));
 
-  return newCardUser.generateCard();
+  const newCard = newCardUser.generateCard();
+
+  newCardUser.setEventListeners()
+
+  return newCard
+
+
 
  }
+
+
 
 //-----------------CRIANDO AS INSTANCIAS-------------------
 
