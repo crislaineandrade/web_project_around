@@ -1,8 +1,6 @@
 export default class Popup {
   constructor(selectPopup) {
-    // this.popup = document.querySelector(selectPopup);
     this.popup = selectPopup
-    //esse paramentro é o elemento geral do popup
   }
 
   open() {
@@ -14,7 +12,7 @@ export default class Popup {
     this.popup.classList.remove('popup_opened')
   }
 
-  
+
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       if (this.popup.classList.contains('popup_opened')) {
@@ -36,7 +34,6 @@ export default class Popup {
 
       }
     })
-
   }
 }
 

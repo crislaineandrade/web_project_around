@@ -22,8 +22,6 @@ export default class Card {
     this._element.querySelector(".elements__name-card").textContent =
       this._text;
 
-    // this._openPopupImage(this._image, this._text);
-
     this._likeButton();
 
     this._deleteCard();

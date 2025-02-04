@@ -1,13 +1,20 @@
-import Card from './scripts/Card.js';
-import FormValidator from './scripts/FormValidator.js';
-import Section from './scripts/Section.js'
-import {formElement, formAddImage, popupImage } from './utils.js';
-import PopupWithImage from './scripts/PopupWithImage.js'
-import PopupWithForm from './scripts/PopupWithForm.js';
-import UserInfo from './scripts/UserInfo.js';
-
-
-// ------------VARIAVEIS---------
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import Section from './components/Section.js'
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
+import Popup from "./components/Popup.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+const openButton = document.querySelector('.profile__image-edit-button');
+const addImageButton = document.querySelector('.profile__add-button');
+const closeButton = document.querySelector('.popup__close-button');
+const closeEditButton = document.querySelector('.popup-edit__close-button');
+const popupImageCloseButton = document.querySelector('.popup-image__close-button');
+const formElement = document.querySelector('.popup');
+const formAddImage = document.querySelector('.popup-edit');
+const popupImage = document.querySelector('.popup-image');
+const nameUser = document.querySelector('.profile__user')
+const ocupationUser = document.querySelector('.profile__paragraph');
 
 
 const config = {
@@ -16,23 +23,6 @@ const config = {
   inactiveButtonClass: '.form__submit_inactive',
   errorClass:'popup__form_name-input-error_active'
 }
-
-
-//pegar o que esta escrito no h1 (nome)
-const nameUser = document.querySelector('.profile__user') // nome do usuario
-//pegar o que esta escrito no paragrafo (ocupacao)
-const ocupationUser = document.querySelector('.profile__paragraph');
-//input do nome
-const inputName = document.querySelector('.popup__name');
-//input da ocupacao
-const inputOcupation = document.querySelector('.popup__ocupation');
-
-//onde var ser adcionado (ul)
-const containerUl = document.querySelector('.elements__cards');
-
-//formulario de criar imagem
-const formCreateImage = document.querySelector('.popup-edit__form')
-
 
 const initialCards = [
   {
@@ -61,6 +51,78 @@ const initialCards = [
   }
 ];
 
+// ------------INSTANCIAS ABRIR FORMULARIO---------
+
+
+const openPopupProfile = new Popup(formElement);
+openButton.addEventListener('click', () => {
+  openPopupProfile.open()
+})
+
+const openPopupAddImage = new Popup(formAddImage);
+addImageButton.addEventListener('click', () => {
+  openPopupAddImage.open()
+})
+
+// ------------FECHAR FORMULARIO---------
+
+const closePopupProfile = new Popup(formElement)
+closeButton.addEventListener('click', () => {
+  closePopupProfile.close()
+})
+
+const closePopupAddImage = new Popup(formAddImage)
+closeEditButton.addEventListener('click', () => {
+  closePopupAddImage.close()
+})
+
+const closePopupImage = new Popup(popupImage);
+popupImageCloseButton.addEventListener('click', () => {
+  closePopupImage.close()
+})
+
+
+//-------CLICAR NO ESC PARA FECHAR---------
+
+const pressEscCloseModalProfile = new Popup(formElement);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalProfile.keydownCloseEsc(evt)
+})
+
+const pressEscCloseModalAddImage = new Popup(formAddImage);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalAddImage.keydownCloseEsc(evt)
+})
+
+const pressEscCloseModalImage = new Popup(popupImage);
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalImage.keydownCloseEsc(evt)
+})
+
+
+//-------CLICAR EM QUALQUER LUGAR DA TELA PARA FECHAR---------
+
+
+const clickOutCloseProfile = new Popup(formElement);
+clickOutCloseProfile.setEventListeners();
+
+const clickOutCloseAddImage = new Popup(formAddImage);
+clickOutCloseAddImage.setEventListeners();
+
+const clickOutCloseImage = new Popup(popupImage);
+clickOutCloseImage.setEventListeners();
+
+//-------ABRIR IMAGEM AO CLICAR---------
+
+
+const clickOpenPopupImage = new PopupWithImage(popupImage);
+document.querySelectorAll('.elements__image').forEach((image) => {
+  image.addEventListener('click', () => {
+    clickOpenPopupImage.open({
+      imageSrc: image.src,
+      subtitleImage: image.textContent})
+  })
+})
 
 
 //---------CRIAR CARTOES INPUT USUARIO--------
@@ -80,8 +142,6 @@ section.renderer();
 
 const popupWithFormEditProfile = new PopupWithForm(formElement, (formData) => {
 
-
-  console.log(ocupationUser)
   const userInfo = new UserInfo({name: nameUser, ocupation: ocupationUser})
   userInfo.setUserInfo(formData.name, formData.ocupation)
 
@@ -90,9 +150,7 @@ popupWithFormEditProfile.setEventListeners()
 
 
 
-
-
-  //fazer a outra instancia do popup de link
+//fazer a outra instancia do popup de link
 
 const popupWithAddImage = new PopupWithForm(formAddImage, (formData) => {
   const newCardImage = {name: formData.name,
@@ -117,13 +175,7 @@ const openImage = new PopupWithImage(popupImage)
 
   return newCard
 
-
-
  }
-
-
-
-//-----------------CRIANDO AS INSTANCIAS-------------------
 
 //Instancia para o popup de editar perfil
 const profileFormValidator = new FormValidator(config, document.querySelector('.popup__form'));

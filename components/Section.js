@@ -10,18 +10,7 @@ export default class Section {
 
     this._vetorItems.forEach((item) => {
       this._render(item);
-
-
-      //this.addItem(elemento criado aqui dentro para gerar o cartao)
-
-
     })
-
-
-
-    //renderiza todos os elementos QUE NESSE CASO É O CARTAO
-    //FAZER FOR EACH PARA CADA CARTAO
-    //E CHAMAR O THIS.RENDER
 
   }
 
@@ -36,8 +25,6 @@ export default class Section {
     //pega o elemento DOM e adciona ao container
 
   }
-
-
 }
 
 
