@@ -5,6 +5,8 @@ import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 import Popup from "./components/Popup.js";
 import PopupWithImage from "./components/PopupWithImage.js";
+import Api from "./components/Api.js";
+import PopupWithConfirmation from './components/PopupWithConfirmation.js';
 const openButton = document.querySelector('.profile__image-edit-button');
 const addImageButton = document.querySelector('.profile__add-button');
 const closeButton = document.querySelector('.popup__close-button');
@@ -13,8 +15,15 @@ const popupImageCloseButton = document.querySelector('.popup-image__close-button
 const formElement = document.querySelector('.popup');
 const formAddImage = document.querySelector('.popup-edit');
 const popupImage = document.querySelector('.popup-image');
+const popupDeleteConfirmation = document.querySelector('.popup-delete')
+const popupEditProfilePicture = document.querySelector('.popup-edit-profile')
 const nameUser = document.querySelector('.profile__user')
 const ocupationUser = document.querySelector('.profile__paragraph');
+const buttonEditProfilePicture = document.querySelector('.profile__edit-icon')
+const closeEditProfilePictureButton = document.querySelector('.popup-edit-profile__close-button')
+
+
+
 
 
 const config = {
@@ -24,32 +33,6 @@ const config = {
   errorClass:'popup__form_name-input-error_active'
 }
 
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg"
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg"
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
-  }
-];
 
 // ------------INSTANCIAS ABRIR FORMULARIO---------
 
@@ -63,6 +46,12 @@ const openPopupAddImage = new Popup(formAddImage);
 addImageButton.addEventListener('click', () => {
   openPopupAddImage.open()
 })
+
+const openEditProfile = new Popup(popupEditProfilePicture)
+buttonEditProfilePicture.addEventListener('click', () => {
+  openEditProfile.open()
+})
+
 
 // ------------FECHAR FORMULARIO---------
 
@@ -79,6 +68,11 @@ closeEditButton.addEventListener('click', () => {
 const closePopupImage = new Popup(popupImage);
 popupImageCloseButton.addEventListener('click', () => {
   closePopupImage.close()
+})
+
+const closeEditProfile = new Popup(popupEditProfilePicture)
+closeEditProfilePictureButton.addEventListener('click', () => {
+  closeEditProfile.close()
 })
 
 
@@ -99,6 +93,11 @@ document.addEventListener('keydown', (evt) => {
   pressEscCloseModalImage.keydownCloseEsc(evt)
 })
 
+const pressEscCloseModalEditProfilePicture = new Popup(popupEditProfilePicture)
+document.addEventListener('keydown', (evt) => {
+  pressEscCloseModalEditProfilePicture.keydownCloseEsc(evt)
+})
+
 
 //-------CLICAR EM QUALQUER LUGAR DA TELA PARA FECHAR---------
 
@@ -111,6 +110,10 @@ clickOutCloseAddImage.setEventListeners();
 
 const clickOutCloseImage = new Popup(popupImage);
 clickOutCloseImage.setEventListeners();
+
+const clickOutCloseEditProfilePicture = new Popup(popupEditProfilePicture)
+clickOutCloseEditProfilePicture.setEventListeners()
+
 
 //-------ABRIR IMAGEM AO CLICAR---------
 
@@ -125,18 +128,60 @@ document.querySelectorAll('.elements__image').forEach((image) => {
 })
 
 
-//---------CRIAR CARTOES INPUT USUARIO--------
+//---------CRIAR CARTOES INPUT USUARIO + API--------
 
-const section = new Section({
-  items: initialCards,
-  renderer: (data) => { //o que é esse data?
-    section.addItem(createCard(data))
-    }
-  }, '.elements__cards'
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1/",
+  headers: {
+    authorization: "ef40eba5-5f65-4620-a921-5bfd85fc37bd",
+    "Content-Type": "application/json"
+  }
+})
 
-)
-section.renderer();
+let userId
+api.getUserInfo()
+  .then((userData) => {
+    document.querySelector('.profile__user').textContent = userData.name;
+    document.querySelector('.profile__paragraph').textContent = userData.about;
+    document.querySelector('.profile__avatar').src = userData.avatar;
+    userId = userData._id;
 
+    const popupEditAvatar = new PopupWithForm(popupEditProfilePicture, (form) => {
+      api.editAvatar(form.link)
+      .then((info) => {
+        document.querySelector('.profile__avatar').src = info.avatar
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    })
+    popupEditAvatar.setEventListeners()
+
+  })
+  .catch((err) => {
+    console.log(`Erro ao carregar as informações do usuário`, err)
+  })
+
+
+
+let section
+api.getCards()
+  .then((cards) => {
+    section = new Section({
+      items: cards,
+      renderer: (data) => {
+        const card = createCard(data)
+        section.addItem(card)
+        }
+      }, '.elements__cards'
+    )
+    section.renderer();
+  })
+
+
+  .catch((err) => {
+    console.log('Erro ao carregar os cartões:', err)
+  })
 
 // ------------EDITAR NOME E OCUPACAO NO PERFIL---------
 
@@ -145,46 +190,114 @@ const popupWithFormEditProfile = new PopupWithForm(formElement, (formData) => {
   const userInfo = new UserInfo({name: nameUser, ocupation: ocupationUser})
   userInfo.setUserInfo(formData.name, formData.ocupation)
 
+  api.editProfile(formData.name, formData.ocupation)
+  .then((infoProfile) => {
+    console.log(infoProfile)
+  })
+  .catch((err) => {
+    console.log('Erro ao atualizar perfil:', err)
+
+  })
+
+
 })
 popupWithFormEditProfile.setEventListeners()
 
-
-
-//fazer a outra instancia do popup de link
 
 const popupWithAddImage = new PopupWithForm(formAddImage, (formData) => {
   const newCardImage = {name: formData.name,
     link: formData.link
   }
+
   const newCard = createCard(newCardImage)
   section.addNewItem(newCard)
 
+  api.addNewCard(newCardImage.name, newCardImage.link)
+  .then((infoCard) => {
+    console.log(infoCard)
+  })
+  .catch((err) => {
+    console.log(`Erro ao atualizar o cartão`, err)
+  })
 })
+
+
+// -----INSTANCIA DO POPUP COM COMFIRMACAO -----------
+
+const openPopupDeleteConfirmation = new PopupWithConfirmation(popupDeleteConfirmation)
+
+openPopupDeleteConfirmation.setEventListeners()
 
 popupWithAddImage.setEventListeners()
 
 
 const openImage = new PopupWithImage(popupImage)
 
+// -------------------------------------------------
+
+
  function createCard(data) {
-  const newCardUser = new Card(data, '#card-template', () => openImage.open({imageSrc: data.link, subtitleImage: data.name}));
+  const newCardUser = new Card(
+    data,
 
-  const newCard = newCardUser.generateCard();
 
+    '#card-template',
+
+    () => openImage.open({imageSrc: data.link, subtitleImage: data.name}),
+
+    (cardId) => {
+    console.log(cardId)
+    openPopupDeleteConfirmation.open()
+    openPopupDeleteConfirmation.handleConfirm(() => {
+      api.deleteCard(cardId)
+      .then(() => {
+        console.log(`Cartao ${cardId} excluido`)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+      newCardUser.handleDeleteCard();
+      openPopupDeleteConfirmation.close()
+    })
+
+  },
+
+
+  (card) => { //esse e o id do cartao que foi curtido
+    api.handleLikeAction(card._id, card._isLiked)
+    .then(() => {
+      card.updateLikeButton()
+
+    })
+    .catch((err) => {
+      console.log("Erro ao atualizar o like:", err);
+    });
+      })
+
+
+
+  const newCard = newCardUser.generateCard(userId);
   newCardUser.setEventListeners()
-
   return newCard
 
  }
 
+// -------------------------------------------------
+
+
 //Instancia para o popup de editar perfil
 const profileFormValidator = new FormValidator(config, document.querySelector('.popup__form'));
-profileFormValidator.enableValidation();
+
+const saveButton = document.querySelector('.form__submit')
+profileFormValidator.enableValidation()
 
 //Instancia para o popup de editar a imagem
 const imagesFormValidator = new FormValidator(config, document.querySelector('.popup-edit__form'));
 imagesFormValidator.enableValidation();
 
+const editProfilePicture = new FormValidator(config, document.querySelector('.popup-edit-profile'))
+editProfilePicture.enableValidation()
 
 
 

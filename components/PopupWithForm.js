@@ -19,7 +19,6 @@ export default class PopupWithForm extends Popup {
 
   }
 
-
   _getInputValues() {
     const values = {}
     this.inputs.forEach((input) => {
@@ -29,7 +28,10 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    super.close();
-    this._form.reset();
+    setTimeout(() => {
+      super.close();
+      this._form.reset();
+    }, 1000)
+
   }
 }

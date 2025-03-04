@@ -58,9 +58,22 @@ export default class FormValidator {
     });
   }
 
+
+  loadingText() {
+    const originalText = this._buttonSubmit.textContent
+
+    this._buttonSubmit.textContent = 'Salvando...'
+
+    setTimeout(() => {
+      this._buttonSubmit.textContent = originalText
+    }, 1000)
+
+  }
+
   enableValidation() {
     this._form.addEventListener("submit", (event) => {
       event.preventDefault();
+      this.loadingText()
     });
     this._setEventListener();
   }

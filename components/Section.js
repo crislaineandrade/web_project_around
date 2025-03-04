@@ -16,8 +16,6 @@ export default class Section {
 
   addItem(card) {
     this._containerSelector.append(card)
-    //pega o elemento DOM e adciona ao container
-
   }
 
   addNewItem(card) {
